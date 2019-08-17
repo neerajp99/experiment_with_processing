@@ -2,12 +2,13 @@
 // Run the code here: http://editor.p5js.org
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 600);
   w = new Walker();
 }
 
 function draw() {
   background(220);
+  w.walk();
   w.display();
 }
 
@@ -16,17 +17,19 @@ function Walker () {
   // this.y = height/2;
   this.pos = createVector(width/2, height/2);
   this.vel = createVector(0, 0);
-  this.acc = createVector(0, 0.1);
+  // this.acc = createVector(0, 0.1);
 
   this.walk = () => {
-  	// this.vel = createVector(random(-4, 4), random(-3, 5));
+    this.acc = createVector(random(-1, 1), random(-1,1));
+    this.acc.mult(5);
+    // this.vel = createVector(random(-4, 4), random(-3, 5));
     this.vel.add(this.acc);
-  	// this.pos = this.pos + this.vel;
+    // this.pos = this.pos + this.vel;
     this.pos.add(this.vel);
   }
 
   this.display = () => {
-  	fill(255);
-  	ellipse(this.pos.x, this.pos.y, 34, 45);
+    fill(255);
+    ellipse(this.pos.x, this.pos.y, 45, 45);
   }
 }
