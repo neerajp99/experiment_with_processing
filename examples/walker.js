@@ -33,3 +33,49 @@ function Walker () {
     ellipse(this.pos.x, this.pos.y, 45, 45);
   }
 }
+
+// Version 2
+
+// Program to create a random walker using P5.js
+// Run the code here: http://editor.p5js.org
+
+function setup() {
+  createCanvas(800, 600);
+  w = new Walker();
+}
+
+function draw() {
+  background(56);
+  w.update();
+  w.display(); 
+}
+
+function Walker () {
+  // this.x = width/2;
+  // this.y = height/2;
+  this.pos = createVector(width/2, height/2);
+  this.vel = createVector(0, 0);
+  this.vel.mult(0.001);
+  this.acc = p5.Vector.fromAngle(58);
+  this.acc.setMag(0.3);
+  // this.acc = createVector(0, 0.1);
+
+  this.update = () => {
+    var mouse = createVector(mouseX, mouseY);
+    // this.acc = p5.Vector.sub(mouse, this.pos);
+    this.acc.rotate(PI/32);
+    // this.acc.normalize();
+    // this.acc.mult(0.08);
+    // this.acc.setMag(0.4);
+    // this.acc.mult(5);
+    // this.vel = createVector(random(-4, 4), random(-3, 5));
+    this.vel.add(this.acc);
+    // this.pos = this.pos + this.vel;
+    this.pos.add(this.vel);
+  }
+
+  this.display = () => {
+    fill(255);
+    ellipse(this.pos.x, this.pos.y, 45, 45);
+  }
+}
