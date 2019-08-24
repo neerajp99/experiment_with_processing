@@ -79,3 +79,4 @@ function Walker () {
     ellipse(this.pos.x, this.pos.y, 45, 45);
   }
 }
+ 
