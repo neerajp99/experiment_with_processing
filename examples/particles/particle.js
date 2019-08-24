@@ -5,7 +5,7 @@ function Particle () {
 
 	this.update = () => {
 		this.vel.add(this.acc);
-		this.pos.add(this.vec);
+		this.pos.add(this.vel);
 	}
 
 	this.display = () => {
