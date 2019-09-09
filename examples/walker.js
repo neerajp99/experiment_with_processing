@@ -1,3 +1,6 @@
+// #########################################
+// Random Walker, example 1
+// #########################################
 // Program to create a random walker using P5.js
 // Run the code here: http://editor.p5js.org
 
@@ -34,7 +37,9 @@ function Walker () {
   }
 }
 
-// Version 2
+// #########################################
+// Random Walker, example 2
+// #########################################
 
 // Program to create a random walker using P5.js
 // Run the code here: http://editor.p5js.org
@@ -80,3 +85,64 @@ function Walker () {
   }
 }
  
+// #########################################
+// Random Walker, example 3
+// #########################################
+
+let particle;
+
+function setup() {
+  createCanvas(700, 500);
+  particle = new Particle(100, 200)
+}
+
+function draw(){ 
+  background(56);
+  let gravity = createVector(0, 0.1);
+  let wind = createVector(0.5, 0.1);
+  particle.applyForce(gravity);
+  if (mouseIsPressed){
+  particle.applyForce(wind);
+  }
+  particle.update();
+  particle.edges();
+  particle.display();
+ 
+}
+function Particle(){
+   this.pos = createVector(width/2, height/2);
+   this.vel = createVector(0, 0);
+   this.acc = createVector(0,0);
+  
+   this.update = () => {
+     this.vel.add(this.acc);
+     this.pos.add(this.vel);
+   }
+   
+   this.applyForce = (force) => {
+     this.acc.add(force);
+     this.acc.setMag(0.05);
+     
+   }
+   
+   this.display = () => {
+     fill(255);
+     ellipse(this.pos.x, this.pos.y, 45, 45);
+   }
+   
+   this.edges = () => {
+     if (this.pos.y > height) {
+       this.vel.y *= random(-1.6, 2);
+       this.pos.y = height;
+     }
+     if(this.pos.x > width){
+       this.vel.x *= random(-1, 1);
+       this.pos.x = width;
+     }
+    
+   }
+}
+
+// #########################################
+// Random Walker, example 4
+// #########################################
