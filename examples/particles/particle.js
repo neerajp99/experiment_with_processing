@@ -3,6 +3,10 @@ function Particle () {
 	this.vel = createVector(0, 0);
 	this.acc = createVector(0, 0);
 
+	this.applyForce = (force) => {
+		this.acc.add(force);
+	}
+
 	this.update = () => {
 		this.vel.add(this.acc);
 		this.pos.add(this.vel);
