@@ -52,13 +52,13 @@ function setup() {
 function draw() {
   background(56);
   w.update();
-  w.display(); 
+  w.display();
 }
 
 function Walker () {
   // this.x = width/2;
   // this.y = height/2;
-  this.pos = createVector(width/2, height/2);
+  this.pos = createVector(width, height);
   this.vel = createVector(0, 0);
   this.vel.mult(0.001);
   this.acc = p5.Vector.fromAngle(58);
@@ -96,7 +96,7 @@ function setup() {
   particle = new Particle(100, 200)
 }
 
-function draw(){ 
+function draw(){
   background(56);
   let gravity = createVector(0, 0.1);
   let wind = createVector(0.5, 0.1);
@@ -107,7 +107,7 @@ function draw(){
   particle.update();
   particle.edges();
   particle.display();
- 
+
 }
 
 
@@ -115,23 +115,23 @@ function Particle(){
    this.pos = createVector(width/2, height/2);
    this.vel = createVector(0, 0);
    this.acc = createVector(0,0);
-  
+
    this.update = () => {
      this.vel.add(this.acc);
      this.pos.add(this.vel);
    }
-   
+
    this.applyForce = (force) => {
      this.acc.add(force);
      this.acc.setMag(0.05);
-     
+
    }
-   
+
    this.display = () => {
      fill(255);
      ellipse(this.pos.x, this.pos.y, 45, 45);
    }
-   
+
    this.edges = () => {
      if (this.pos.y > height) {
        this.vel.y *= random(-1.6, 2);
@@ -141,7 +141,7 @@ function Particle(){
        this.vel.x *= random(-1, 1);
        this.pos.x = width;
      }
-    
+
    }
 }
 
@@ -267,7 +267,7 @@ function draw(){
     particles_c[i].move();
     particles_c[i].display(radius);
     particles_c[i].checkEdge();
-  }  
+  }
 }
 
 
@@ -297,4 +297,3 @@ function Particle(x, y){
     ellipse(this.pos.x, this.pos.y, r, r);
   }
 }
-
