@@ -29,24 +29,26 @@ def setup():
             currentValue = mean[i]
             midPoint = getCenterPoint(previousValue, currentValue, standardDeviation)
             newVector.append(previousValue)
+            print("Previous", previousValue)
             newVector.append(midPoint)
+            print("New", midPoint)
         newVector.append(mean[len(mean) - 1])
         return newVector
-    
+
+
+
     global polygon
     size(800, 800)
     background(255)
     colorMode(HSB, 360, 200, 150, 1)
-    
     # Creating a polygon 
     sideAngle = 0.5
-    while sideAngle < 20:
+    while sideAngle < 6:
         sideX = sin(sideAngle) * width / 4
         sideY = cos(sideAngle) * width / 4
         polygon.append({"sideX": sideX, "sideY": sideY})
         # print(polygon)
-        sideAngle += 0.5 
-    
+        sideAngle += 0.6
     # Midpoint using Gaussian Distribution 
     mid = 50
     while mid > 5:
@@ -54,9 +56,11 @@ def setup():
             polygon = getMid(polygon, mid)
         mid /= 2
     
+    
+    
 def draw():
     global polygon, randomGauss
-    for i in range(60):
+    for i in range(20):
         push()
         noStroke()
         fill(200, 100, 80, 0.02)
@@ -67,7 +71,7 @@ def draw():
             x = random_gauss(currentVector['sideX'], random(25))
             y = random_gauss(currentVector['sideY'], random(25))
             vertex(x, y)
-        endShape()
+        endShape(CLOSE)
         pop()
     noLoop()
     
