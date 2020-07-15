@@ -41,14 +41,10 @@ def draw():
                 
         # Set the image pixels to the second image
         for i in range(img.width):
-            # print(newPixelArray[i])
-            # c = color(newPixelArray[i])
             a = newPixelArray[i][0]
             b = newPixelArray[i][1]
             c = newPixelArray[i][2]
             cl = color(a, b, c)
-            # print(cl)
-            # printc)
             imgNew.set(i, x, cl)
     print('jajaja')     
     imgNew.updatePixels();
